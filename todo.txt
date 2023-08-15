@@ -1,0 +1,19 @@
+- Storage/Persistence
+    Where are we going to actually save dynamic data? 
+    Having the user download/upload a json file?
+    Localstorage? 
+    Backend database? 
+    Something else? 
+
+- Adding counselors
+    - Recording male/female
+- Removing counselors
+- Renameing counselors
+
+- Adding groups manually
+- Adding groups automatically
+    - Group exclusion selection
+    - Minimum counselors
+
+- Calculate days off
+- Display days off
