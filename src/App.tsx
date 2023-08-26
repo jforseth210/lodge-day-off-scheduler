@@ -5,7 +5,6 @@ import {
   Accordion,
   Button,
   ButtonGroup,
-  Card,
   Col,
   Container,
   Form,
@@ -54,14 +53,14 @@ function App() {
                         .toLowerCase()
                         .includes(
                           (e.target as HTMLInputElement).value.toLowerCase()
-                        ) || (e.target as HTMLInputElement).value == "";
+                        ) || (e.target as HTMLInputElement).value === "";
                     return counselor;
                   })
                 );
               }}
               onKeyDown={function (e) {
                 if (
-                  e.key == "Enter" &&
+                  e.key === "Enter" &&
                   !counselors
                     .map((counselor) => counselor.name)
                     .includes((e.target as HTMLInputElement).value)
@@ -78,8 +77,9 @@ function App() {
               }}
             />
             <ListGroup>
-              {counselors.map(function (counselor) {
-                if (counselor.visible) {
+              {counselors
+                .filter((counselor) => counselor.visible)
+                .map(function (counselor) {
                   return (
                     <ListGroup.Item className="d-flex">
                       {counselor.name}
@@ -88,7 +88,7 @@ function App() {
                         onClick={() => {
                           setCounselors(
                             counselors.filter(
-                              (counselori) => counselori.name != counselor.name
+                              (counselori) => counselori.name !== counselor.name
                             )
                           );
                         }}
@@ -97,8 +97,7 @@ function App() {
                       </Button>
                     </ListGroup.Item>
                   );
-                }
-              })}
+                })}
             </ListGroup>
           </Col>
           <Col>
@@ -128,7 +127,7 @@ function App() {
                       variant={days.includes("MONDAY") ? "primary" : ""}
                       onClick={() => {
                         if (days.includes("MONDAY")) {
-                          setDays(days.filter((day) => day != "MONDAY"));
+                          setDays(days.filter((day) => day !== "MONDAY"));
                         } else {
                           setDays([...days, "MONDAY"]);
                         }
@@ -140,7 +139,7 @@ function App() {
                       variant={days.includes("TUESDAY") ? "primary" : ""}
                       onClick={() => {
                         if (days.includes("TUESDAY")) {
-                          setDays(days.filter((day) => day != "TUESDAY"));
+                          setDays(days.filter((day) => day !== "TUESDAY"));
                         } else {
                           setDays([...days, "TUESDAY"]);
                         }
@@ -152,7 +151,7 @@ function App() {
                       variant={days.includes("WEDNESDAY") ? "primary" : ""}
                       onClick={() => {
                         if (days.includes("WEDNESDAY")) {
-                          setDays(days.filter((day) => day != "WEDNESDAY"));
+                          setDays(days.filter((day) => day !== "WEDNESDAY"));
                         } else {
                           setDays([...days, "WEDNESDAY"]);
                         }
@@ -164,7 +163,7 @@ function App() {
                       variant={days.includes("THURSDAY") ? "primary" : ""}
                       onClick={() => {
                         if (days.includes("THURSDAY")) {
-                          setDays(days.filter((day) => day != "THURSDAY"));
+                          setDays(days.filter((day) => day !== "THURSDAY"));
                         } else {
                           setDays([...days, "THURSDAY"]);
                         }
