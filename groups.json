@@ -1,0 +1,110 @@
+[
+    {
+      "name": "MONDAY Prayer",
+      "days": ["MONDAY"],
+      "counselors": ["Lily K"],
+      "minCounselors": 1
+    },
+    {
+      "name": "TUESDAYs Prayer",
+      "days": ["TUESDAY"],
+      "counselors": ["Justin"],
+      "minCounselors": 1
+    },
+    {
+      "name": "WEDNESDAY Prayer",
+      "days": ["WEDNESDAY"],
+      "counselors": ["Kara"],
+      "minCounselors": 1
+    },
+    {
+      "name": "THURSDAY Prayer",
+      "days": ["THURSDAY"],
+      "counselors": ["Luke"],
+      "minCounselors": 1
+    },
+    {
+      "name": "SG 1",
+      "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
+      "counselors": ["Mason", "Grace H"],
+      "minCounselors": 1
+    },
+    {
+      "name": "SG 2",
+      "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
+      "counselors": ["Kyley", "Asher"],
+      "minCounselors": 1
+    },
+    {
+      "name": "SG 3",
+      "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
+      "counselors": ["Ryan", "Lily T"],
+      "minCounselors": 1
+    },
+    {
+      "name": "SG 4",
+      "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
+      "counselors": ["Jack S", "Kara"],
+      "minCounselors": 1
+    },
+    {
+      "name": "SG 5",
+      "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
+      "counselors": ["Jack H", "Becca"],
+      "minCounselors": 1
+    },
+    {
+      "name": "SG 6",
+      "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
+      "counselors": ["Luke", "Grace K"],
+      "minCounselors": 1
+    },
+    {
+      "name": "SG 7",
+      "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
+      "counselors": ["Jack M", "Lily K"],
+      "minCounselors": 1
+    },
+    {
+      "name": "SG 8",
+      "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
+      "counselors": ["Mike", "Vanessa"],
+      "minCounselors": 1
+    },
+    {
+      "name": "SG 9",
+      "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
+      "counselors": ["Justin", "Amy"],
+      "minCounselors": 1
+    },
+    {
+      "name": "Bear",
+      "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
+      "counselors": ["Kara", "Kyley", "Amy", "Becca", "Grace H"],
+      "minCounselors": 2
+    },
+    {
+      "name": "Wildcat",
+      "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
+      "counselors": ["Grace K", "Vanessa", "Lily K", "Lily T"],
+      "minCounselors": 2
+    },
+    {
+      "name": "Coyote",
+      "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
+      "counselors": ["Mason", "Jack S", "Mike"],
+      "minCounselors": 2
+    },
+    {
+      "name": "Goat's Nest",
+      "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
+      "counselors": ["Asher", "Jack H", "Justin"],
+      "minCounselors": 2
+    },
+    {
+      "name": "Chipmunk",
+      "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
+      "counselors": ["Ryan", "Luke", "Jack M"],
+      "minCounselors": 2
+    }
+]
