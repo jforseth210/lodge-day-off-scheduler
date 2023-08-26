@@ -109,26 +109,48 @@ groups = [
   },
 ];
 counselors = [
-  { name: "Mason", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Grace H", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Asher", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Kyley", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Ryan", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Lily T", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Jack S", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Kara", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Jack H", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Becca", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Luke", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Grace K", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Jack M", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Lily K", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Mike", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Vanessa", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Justin", mon: "?", tues: "?", weds: "?", thurs: "?" },
-  { name: "Amy", mon: "?", tues: "?", weds: "?", thurs: "?" },
+  { name: "Mason", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Grace H", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Asher", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Kyley", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Ryan", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Lily T", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Jack S", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Kara", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Jack H", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Becca", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Luke", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Grace K", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Jack M", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Lily K", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Mike", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Vanessa", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Justin", mon: false, tues: false, weds: false, thurs: false },
+  { name: "Amy", mon: false, tues: false, weds: false, thurs: false },
 ];
 function determineDaysOff() {
-  // No idea
+  for (let i = 0; i < days.length; i++) {
+    const day = days[i];
+    for (let j = 0; j < groups.length; j++) {
+      const group = groups[j];
+      if (!hasEnough(group, day)) {
+        // Something something recursion
+      }
+    }
+  }
 }
-determineDaysOff()
+function hasEnough(group, day) {
+  counter = 0;
+  for (let i = 0; i < group.counselors.length; i++) {
+    const counselor = group.counselors[i];
+    if (counselor[day]) {
+      counter++;
+    }
+    if (counter >= group.minCounselors) {
+      return true;
+    }
+  }
+  return false;
+}
+function availableCounselors() {}
+determineDaysOff();
