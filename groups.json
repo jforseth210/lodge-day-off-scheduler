@@ -98,7 +98,7 @@
     {
       "name": "Goat's Nest",
       "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"],
-      "counselors": ["Asher", "Jack H", "Justin"],
+      "counselors": ["Asher", "Jack H", "Justin", "Volunteer"],
       "minCounselors": 2
     },
     {
