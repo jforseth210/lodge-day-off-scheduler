@@ -5,10 +5,12 @@ import { Col, Container, Form, Row } from "react-bootstrap";
 import { CounselorList } from "./CounselorList";
 import { useCounselorsDispatch } from "./CounselorsContext";
 import { NewGroupAccordian } from "./NewGroupAccordian";
+import { useGroups } from "./GroupsContext";
+import { GroupList } from "./GroupList";
 
 function App() {
   let counselorsDispatch: Function = useCounselorsDispatch()!;
-
+  let groups: Array<any> = useGroups()!;
   return (
     <>
       <Nav />
@@ -36,6 +38,7 @@ function App() {
                     visible: true,
                   });
                   (e.target as HTMLInputElement).value = "";
+                  counselorsDispatch({ type: "show_all" });
                 }
               }}
             />
@@ -44,6 +47,7 @@ function App() {
           <Col>
             <h2>Groups</h2>
             <NewGroupAccordian />
+            <GroupList />
           </Col>
         </Row>
       </Container>

@@ -11,7 +11,7 @@ export function CounselorList() {
         .filter((counselor) => counselor.visible)
         .map(function (counselor) {
           return (
-            <ListGroup.Item className="d-flex">
+            <ListGroup.Item className="d-flex" key={counselor.name}>
               {counselor.name}
               <Button
                 className="ms-auto btn-danger p-1"

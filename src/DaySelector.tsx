@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { ButtonGroup, Button } from "react-bootstrap";
-export function DaySelector() {
-  const [selectedDays, setSelectedDays] = useState<Array<String>>([]);
+interface Props {
+  selectedDays: Array<String>;
+  setSelectedDays: Function;
+}
+
+export function DaySelector({ selectedDays, setSelectedDays }: Props) {
   const days = [
-    { label: "Mon", name: "MONDAY" },
-    { label: "Tues", name: "TUESDAY" },
-    { label: "Weds", name: "WEDNESDAY" },
-    { label: "Thurs", name: "THURSDAY" },
+    { label: "Mon", name: "Mon" },
+    { label: "Tues", name: "Tues" },
+    { label: "Weds", name: "Weds" },
+    { label: "Thurs", name: "Thurs" },
   ];
   return (
     <>
@@ -14,6 +18,7 @@ export function DaySelector() {
         {days.map((day) => {
           return (
             <Button
+              key={day.name}
               variant={selectedDays.includes(day.name) ? "primary" : ""}
               onClick={() => {
                 if (selectedDays.includes(day.name)) {

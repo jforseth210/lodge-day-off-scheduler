@@ -1,14 +1,24 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 
 const CounselorsContext = createContext(null);
 
 const CounselorsDispatchContext = createContext(null);
-
 export function CounselorsProvider({ children }) {
   const [counselors, dispatch] = useReducer(
     counselorsReducer,
     loadCounselors()
   );
+
+  useEffect(() => {
+    localStorage.setItem(
+       "counselors",
+      JSON.stringify(
+        counselors.map((counselor) => {
+          return { ...counselor, visible: true };
+        })
+      )
+    );
+  }, [counselors]);
 
   return (
     <CounselorsContext.Provider value={counselors}>
@@ -49,11 +59,12 @@ function counselorsReducer(counselors, action) {
       }
       return [
         ...counselors,
-        {
-          name: action.name,
-          visible: action.visible,
-        },
-      ];
+        { key: action.name, name: action.name, visible: action.visible },
+      ].sort(function (a, b) {
+        var textA = a.name.toUpperCase();
+        var textB = b.name.toUpperCase();
+        return textA < textB ? -1 : textA > textB ? 1 : 0;
+      });
     }
     case "deleted": {
       return counselors.filter((counselor) => counselor.name !== action.name);
