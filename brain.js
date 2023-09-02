@@ -1,103 +1,4 @@
 const weekday = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"];
-class Group {
-  constructor(name, days, minCounselors) {
-    this.name = name;
-    this.days = days;
-    this.minCounselors = minCounselors;
-    this.memberCounselors = [];
-  }
-
-  hasMinimum(day) {
-    // If the group doesn't apply to the given day,
-    // it doesn't need any counselors. For example, if it's Tuesday,
-    // and we want to know if the Monday session group has
-    // enough people, the answer is yes.
-    if (!this.days.includes(day)) {
-      return true;
-    }
-
-    let count = 0;
-    for (const counselor of this.memberCounselors) {
-      if (counselor.isOn(day)) {
-        count++;
-      }
-    }
-    return count >= this.minCounselors;
-  }
-
-  getCounselorsOff(day) {
-    return this.memberCounselors.filter((counselor) => !counselor.isOn(day));
-  }
-  getCounselorsOn(day) {
-    return this.memberCounselors.filter((counselor) => counselor.isOn(day));
-  }
-  getCounselorRatio(day) {
-    return this.minCounselors / this.getCounselorsOff(day).length;
-  }
-
-  addCounselor(counselor) {
-    this.memberCounselors.push(counselor);
-  }
-}
-class Counselor {
-  constructor(name) {
-    this.name = name;
-    this.daysOn = {
-      MONDAY: false,
-      TUESDAY: false,
-      WEDNESDAY: false,
-      THURSDAY: false,
-    };
-    this.groups = [];
-  }
-
-  addGroup(group) {
-    this.groups.push(group);
-  }
-
-  isOn(day) {
-    return this.daysOn[day];
-  }
-
-  setOn(day, isOn) {
-    this.daysOn[day] = isOn;
-
-    // The counselor is working every day this week!
-    if (isOn && Object.values(this.daysOn).every((value) => value)) {
-      return false;
-    }
-    return true;
-  }
-
-  canWorkAnotherDay() {
-    if (this.name === "Volunteer") {
-      return true;
-    }
-    let count = 0;
-    for (const day in this.daysOn) {
-      if (!this.isOn(day)) {
-        count++;
-      }
-    }
-    return count > 1;
-  }
-
-  getDaysOff() {
-    const off = [];
-    for (const [day, isOn] of Object.entries(this.daysOn)) {
-      if (!isOn) {
-        off.push(day);
-      }
-    }
-    return off;
-  }
-
-  setAllDaysOff() {
-    for (const day in this.daysOn) {
-      this.daysOn[day] = false;
-    }
-  }
-}
 
 const getRandomElement = (array) =>
   array[Math.floor(Math.random() * array.length)];
@@ -125,7 +26,7 @@ function solve(groups, counselors) {
           return false;
         }
       }
-      console.log(`Solved: ${day}`)
+      console.log(`Solved: ${day}`);
     }
     groups.sort((a, b) => a.getCounselorRatio(day) - b.getCounselorRatio(day));
   }
@@ -149,6 +50,7 @@ function solve(groups, counselors) {
   }
   return result;
 }
+
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));

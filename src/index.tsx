@@ -3,19 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { CounselorsProvider } from "./CounselorsContext";
-import { GroupsProvider } from "./GroupsContext";
-
+import { StateProvider } from "./ApplicationContext";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <CounselorsProvider>
-      <GroupsProvider>
-        <App />
-      </GroupsProvider>
-    </CounselorsProvider>
+    <StateProvider>
+      <App />
+    </StateProvider>
   </React.StrictMode>
 );
 

@@ -3,14 +3,12 @@ import "./App.css";
 import Nav from "./Nav";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { CounselorList } from "./CounselorList";
-import { useCounselorsDispatch } from "./CounselorsContext";
+import { useApplicationStateDispatch } from "./ApplicationContext";
 import { NewGroupAccordian } from "./NewGroupAccordian";
-import { useGroups } from "./GroupsContext";
 import { GroupList } from "./GroupList";
 
 function App() {
-  let counselorsDispatch: Function = useCounselorsDispatch()!;
-  let groups: Array<any> = useGroups()!;
+  let dispatch: Function = useApplicationStateDispatch()!;
   return (
     <>
       <Nav />
@@ -22,23 +20,23 @@ function App() {
               className="py-3"
               placeholder="Search or Add a counselor..."
               onBlur={function (e) {
-                counselorsDispatch({ type: "show_all" });
+                dispatch({ type: "show_all_counselors" });
               }}
               onInput={function (e) {
-                counselorsDispatch({
-                  type: "search",
+                dispatch({
+                  type: "search_counselors",
                   text: (e.target as HTMLInputElement).value.toLowerCase(),
                 });
               }}
               onKeyDown={function (e) {
                 if (e.key === "Enter") {
-                  counselorsDispatch({
-                    type: "added",
+                  dispatch({
+                    type: "added_counselor",
                     name: (e.target as HTMLInputElement).value,
                     visible: true,
                   });
                   (e.target as HTMLInputElement).value = "";
-                  counselorsDispatch({ type: "show_all" });
+                  dispatch({ type: "show_all_counselors" });
                 }
               }}
             />

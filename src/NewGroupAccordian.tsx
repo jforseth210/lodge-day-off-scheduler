@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import { Accordion, Form, Button } from "react-bootstrap";
 import { DaySelector } from "./DaySelector";
-import { useCounselors } from "./CounselorsContext";
-import Select from "react-select";
-import { useGroupsDispatch } from "./GroupsContext";
+import Select, { MultiValue } from "react-select";
+import {
+  useApplicationState,
+  useApplicationStateDispatch,
+} from "./ApplicationContext";
+import { Counselor } from "./Models";
 export function NewGroupAccordian() {
-  let allCounselors: Array<{ name: string; visible: boolean }> =
-    useCounselors()!;
+  let state = useApplicationState()!;
+
+  let allCounselors = state.counselors;
 
   const [selectedDays, setSelectedDays] = useState<Array<String>>([]);
   const [name, setName] = useState("");
-  const [memberCounselors, setMemberCounselors] = useState<
-    Array<{ name: string; visible: boolean }>
-  >([]);
+  const [memberCounselors, setMemberCounselors] = useState<Counselor[]>([]);
   const [minCounselors, setMinCounselors] = useState(0);
-  const groupsDispatch: Function = useGroupsDispatch()!;
+  const dispatch: Function = useApplicationStateDispatch()!;
   return (
     <Accordion>
       <Accordion.Item eventKey="0">
@@ -33,18 +35,17 @@ export function NewGroupAccordian() {
             isMulti
             onChange={(members) => {
               setMemberCounselors(
-                members.map((member: any) => {
-                  console.log(member);
+                members.map((member) => {
                   return allCounselors.filter((all_counselor) => {
-                    return all_counselor.name === member.value;
+                    return all_counselor.getName() === member.value;
                   })[0];
                 })
               );
             }}
             options={allCounselors!.map((counselor) => {
               return {
-                label: counselor.name,
-                value: counselor.name,
+                label: counselor.getName(),
+                value: counselor.getName(),
               };
             })}
           />
@@ -62,8 +63,8 @@ export function NewGroupAccordian() {
           />
           <Button
             onClick={() => {
-              groupsDispatch({
-                type: "added",
+              dispatch({
+                type: "added_group",
                 name: name,
                 memberCounselors: memberCounselors,
                 minCounselors: minCounselors,

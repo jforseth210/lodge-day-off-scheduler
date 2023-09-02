@@ -1,24 +1,27 @@
 import React from "react";
 import { ListGroup, Button } from "react-bootstrap";
-import { useCounselors, useCounselorsDispatch } from "./CounselorsContext";
+import {
+  useApplicationState,
+  useApplicationStateDispatch,
+} from "./ApplicationContext";
 export function CounselorList() {
-  const counselors: Array<{ name: string; visible: boolean }> =
-    useCounselors()!;
-  const counselorsDispatch: Function = useCounselorsDispatch()!;
+  const state = useApplicationState();
+  const counselors = state.counselors;
+  const dispatch: Function = useApplicationStateDispatch();
   return (
     <ListGroup>
       {counselors
-        .filter((counselor) => counselor.visible)
+        .filter((counselor) => counselor.getVisibility())
         .map(function (counselor) {
           return (
-            <ListGroup.Item className="d-flex" key={counselor.name}>
-              {counselor.name}
+            <ListGroup.Item className="d-flex" key={counselor.getName()}>
+              {counselor.getName()}
               <Button
                 className="ms-auto btn-danger p-1"
                 onClick={() => {
-                  counselorsDispatch({
-                    type: "deleted",
-                    name: counselor.name,
+                  dispatch({
+                    type: "deleted_counselor",
+                    name: counselor.getName(),
                   });
                 }}
               >
