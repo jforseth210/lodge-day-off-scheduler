@@ -1,20 +1,14 @@
-import React, { useState } from "react";
+
+import React from "react";
 import { ListGroup, Button, Badge } from "react-bootstrap";
 import {
   useApplicationState,
   useApplicationStateDispatch,
 } from "./ApplicationContext";
-import { DaySelector } from "./DaySelector";
 export function GroupList() {
   const state = useApplicationState()!;
   const groups = state.groups;
   const dispatch: Function = useApplicationStateDispatch()!;
-  const [selectedDays, setSelectedDays] = useState([
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thur",
-  ]);
   return (
     <>
       <ListGroup>

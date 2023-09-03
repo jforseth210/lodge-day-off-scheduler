@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Accordion, Form, Button } from "react-bootstrap";
 import { DaySelector } from "./DaySelector";
-import Select, { MultiValue } from "react-select";
+import Select from "react-select";
 import {
   useApplicationState,
   useApplicationStateDispatch,
