@@ -1,5 +1,5 @@
 import React from "react";
-import { ListGroup, Button } from "react-bootstrap";
+import { ListGroup, Button, Badge } from "react-bootstrap";
 import {
   useApplicationState,
   useApplicationStateDispatch,
@@ -15,7 +15,16 @@ export function CounselorList() {
         .map(function (counselor) {
           return (
             <ListGroup.Item className="d-flex" key={counselor.getName()}>
-              {counselor.getName()}
+              <div className="w-100">
+                <div className="d-flex">
+                  <p className="my-auto">{counselor.getName()}</p>
+                </div>
+                {counselor.getDaysOff().map((day) => (
+                  <Badge bg="primary" className="me-1" key={day}>
+                    {day}
+                  </Badge>
+                ))}
+              </div>
               <Button
                 className="ms-auto btn-danger p-1"
                 onClick={() => {

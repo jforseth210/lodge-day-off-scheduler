@@ -1,0 +1,271 @@
+{
+  "counselors": [
+    {
+      "name": "Amy",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": true, "Wed": false, "Thur": true },
+      "groups": []
+    },
+    {
+      "name": "Asher",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": true, "Wed": true, "Thur": false },
+      "groups": []
+    },
+    {
+      "name": "Becca",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": true, "Wed": true, "Thur": false },
+      "groups": []
+    },
+    {
+      "name": "Grace H",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": true, "Wed": true, "Thur": false },
+      "groups": []
+    },
+    {
+      "name": "Grace K",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": true, "Wed": true, "Thur": false },
+      "groups": []
+    },
+    {
+      "name": "Jack H",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": false, "Wed": true, "Thur": true },
+      "groups": []
+    },
+    {
+      "name": "Jack M",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": true, "Wed": true, "Thur": true },
+      "groups": []
+    },
+    {
+      "name": "Jack S",
+      "visible": true,
+      "daysOn": { "Mon": false, "Tue": true, "Wed": true, "Thur": true },
+      "groups": []
+    },
+    {
+      "name": "Justin",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": true, "Wed": true, "Thur": true },
+      "groups": []
+    },
+    {
+      "name": "Kara",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": true, "Wed": true, "Thur": true },
+      "groups": []
+    },
+    {
+      "name": "Kyley",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": false, "Wed": true, "Thur": true },
+      "groups": []
+    },
+    {
+      "name": "Lily K",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": true, "Wed": false, "Thur": true },
+      "groups": []
+    },
+    {
+      "name": "Lily T",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": true, "Wed": true, "Thur": true },
+      "groups": []
+    },
+    {
+      "name": "Luke",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": true, "Wed": false, "Thur": true },
+      "groups": []
+    },
+    {
+      "name": "Mason",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": true, "Wed": true, "Thur": true },
+      "groups": []
+    },
+    {
+      "name": "Mike",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": false, "Wed": true, "Thur": true },
+      "groups": []
+    },
+    {
+      "name": "Ryan",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": false, "Wed": true, "Thur": true },
+      "groups": []
+    },
+    {
+      "name": "Vanessa",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": true, "Wed": false, "Thur": true },
+      "groups": []
+    },
+    {
+      "name": "Volunteer",
+      "visible": true,
+      "daysOn": { "Mon": true, "Tue": false, "Wed": true, "Thur": true },
+      "groups": []
+    }
+  ],
+  "groups": [
+    {
+      "name": "Goat's Nest",
+      "minCounselors": 2,
+      "days": ["Mon", "Tue", "Wed", "Thur"],
+      "memberCounselors": []
+    },
+    {
+      "name": "SG 5",
+      "minCounselors": 1,
+      "days": ["Mon", "Tue", "Wed", "Thur"],
+      "memberCounselors": []
+    },
+    {
+      "name": "SG 6",
+      "minCounselors": 1,
+      "days": ["Mon", "Tue", "Wed", "Thur"],
+      "memberCounselors": []
+    },
+    {
+      "name": "Bear",
+      "minCounselors": 2,
+      "days": ["Mon", "Tue", "Wed", "Thur"],
+      "memberCounselors": []
+    },
+    {
+      "name": "SG 2",
+      "minCounselors": 1,
+      "days": ["Thur", "Wed", "Tue", "Mon"],
+      "memberCounselors": []
+    },
+    {
+      "name": "SG 3",
+      "minCounselors": 1,
+      "days": ["Mon", "Tue", "Wed", "Thur"],
+      "memberCounselors": []
+    },
+    {
+      "name": "SG 1",
+      "minCounselors": 1,
+      "days": ["Mon", "Tue", "Wed", "Thur"],
+      "memberCounselors": []
+    },
+    {
+      "name": "Wildcat",
+      "minCounselors": 2,
+      "days": ["Mon", "Tue", "Wed", "Thur"],
+      "memberCounselors": []
+    },
+    {
+      "name": "Chipmunk",
+      "minCounselors": 2,
+      "days": ["Mon", "Tue", "Wed", "Thur"],
+      "memberCounselors": []
+    },
+    {
+      "name": "SG 8",
+      "minCounselors": 1,
+      "days": ["Mon", "Tue", "Wed", "Thur"],
+      "memberCounselors": []
+    },
+    {
+      "name": "SG 9",
+      "minCounselors": 1,
+      "days": ["Mon", "Tue", "Wed", "Thur"],
+      "memberCounselors": []
+    },
+    {
+      "name": "SG 7",
+      "minCounselors": 1,
+      "days": ["Mon", "Tue", "Wed", "Thur"],
+      "memberCounselors": []
+    },
+    {
+      "name": "Monday Prayer",
+      "minCounselors": 1,
+      "days": ["Mon"],
+      "memberCounselors": []
+    },
+    {
+      "name": "Thursday Prayer",
+      "minCounselors": 1,
+      "days": ["Thur"],
+      "memberCounselors": []
+    },
+    {
+      "name": "Coyote",
+      "minCounselors": 2,
+      "days": ["Mon", "Tue", "Wed", "Thur"],
+      "memberCounselors": []
+    },
+    {
+      "name": "SG 4",
+      "minCounselors": 1,
+      "days": ["Mon", "Tue", "Wed", "Thur"],
+      "memberCounselors": []
+    },
+    {
+      "name": "Tuesday Prayer",
+      "minCounselors": 1,
+      "days": ["Tue"],
+      "memberCounselors": []
+    },
+    {
+      "name": "Wednesday Prayer",
+      "minCounselors": 1,
+      "days": ["Wed"],
+      "memberCounselors": []
+    }
+  ],
+  "relationships": [
+    { "group": "SG 9", "counselor": "Amy" },
+    { "group": "Bear", "counselor": "Amy" },
+    { "group": "SG 2", "counselor": "Asher" },
+    { "group": "Goat's Nest", "counselor": "Asher" },
+    { "group": "SG 5", "counselor": "Becca" },
+    { "group": "Bear", "counselor": "Becca" },
+    { "group": "SG 1", "counselor": "Grace H" },
+    { "group": "Bear", "counselor": "Grace H" },
+    { "group": "SG 6", "counselor": "Grace K" },
+    { "group": "Wildcat", "counselor": "Grace K" },
+    { "group": "SG 5", "counselor": "Jack H" },
+    { "group": "Goat's Nest", "counselor": "Jack H" },
+    { "group": "SG 7", "counselor": "Jack M" },
+    { "group": "Chipmunk", "counselor": "Jack M" },
+    { "group": "SG 4", "counselor": "Jack S" },
+    { "group": "Coyote", "counselor": "Jack S" },
+    { "group": "Tuesday Prayer", "counselor": "Justin" },
+    { "group": "SG 9", "counselor": "Justin" },
+    { "group": "Goat's Nest", "counselor": "Justin" },
+    { "group": "Wednesday Prayer", "counselor": "Kara" },
+    { "group": "SG 4", "counselor": "Kara" },
+    { "group": "Bear", "counselor": "Kara" },
+    { "group": "SG 2", "counselor": "Kyley" },
+    { "group": "Bear", "counselor": "Kyley" },
+    { "group": "Monday Prayer", "counselor": "Lily K" },
+    { "group": "SG 7", "counselor": "Lily K" },
+    { "group": "Wildcat", "counselor": "Lily K" },
+    { "group": "SG 3", "counselor": "Lily T" },
+    { "group": "Wildcat", "counselor": "Lily T" },
+    { "group": "Thursday Prayer", "counselor": "Luke" },
+    { "group": "SG 6", "counselor": "Luke" },
+    { "group": "Chipmunk", "counselor": "Luke" },
+    { "group": "SG 1", "counselor": "Mason" },
+    { "group": "Coyote", "counselor": "Mason" },
+    { "group": "SG 8", "counselor": "Mike" },
+    { "group": "Coyote", "counselor": "Mike" },
+    { "group": "SG 3", "counselor": "Ryan" },
+    { "group": "Chipmunk", "counselor": "Ryan" },
+    { "group": "SG 8", "counselor": "Vanessa" },
+    { "group": "Wildcat", "counselor": "Vanessa" },
+    { "group": "Goat's Nest", "counselor": "Volunteer" }
+  ]
+}

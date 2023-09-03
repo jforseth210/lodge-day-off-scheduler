@@ -1,13 +1,9 @@
 export enum Weekday {
-  MONDAY,
-  TUESDAY,
-  WEDNESDAY,
-  THURSDAY,
+  Mon = "Mon",
+  Tue = "Tue",
+  Wed = "Wed",
+  Thur = "Thur",
 }
-type ValueOfWeekday = `${Weekday}`;
-type DayOnDictionary = {
-  [P in ValueOfWeekday]: boolean;
-};
 export class Group {
   private name: string;
   private minCounselors: number;
@@ -74,19 +70,25 @@ export class Group {
     return myClone;
   }
 }
+type DayOffDictionary = {
+  Mon: boolean;
+  Tue: boolean;
+  Wed: boolean;
+  Thur: boolean;
+};
 export class Counselor {
   private name: string;
   private visible: boolean;
-  private daysOn: DayOnDictionary;
+  private daysOn: { [key: string]: boolean };
   private groups: Array<Group>;
   constructor(name: string) {
     this.name = name;
     this.visible = true;
     this.daysOn = {
-      [Weekday.MONDAY]: false,
-      [Weekday.TUESDAY]: false,
-      [Weekday.WEDNESDAY]: false,
-      [Weekday.THURSDAY]: false,
+      Mon: false,
+      Tue: false,
+      Wed: false,
+      Thur: false,
     };
     this.groups = [];
   }
@@ -111,12 +113,12 @@ export class Counselor {
   getName() {
     return this.name;
   }
-  isOn(day: Weekday) {
-    return this.daysOn[day];
+  isOn(day: Weekday): boolean {
+    return this.daysOn[day.toString() as keyof DayOffDictionary];
   }
 
-  setOn(day: Weekday, isOn: boolean) {
-    this.daysOn[day] = isOn;
+  setOn(day: Weekday, isOn: boolean): boolean {
+    this.daysOn[day.toString() as keyof DayOffDictionary] = isOn;
 
     // The counselor is working every day this week!
     if (isOn && Object.values(this.daysOn).every((value) => value)) {
@@ -124,11 +126,11 @@ export class Counselor {
     }
     return true;
   }
-  setDaysOn(daysOn: DayOnDictionary) {
+  setDaysOn(daysOn: { [key: string]: boolean }) {
     this.daysOn = daysOn;
   }
 
-  canWorkAnotherDay() {
+  canWorkAnotherDay(): boolean {
     if (this.name === "Volunteer") {
       return true;
     }
@@ -141,7 +143,7 @@ export class Counselor {
     return count > 1;
   }
 
-  getDaysOff() {
+  getDaysOff(): Weekday[] {
     const off: Weekday[] = [];
     for (const [day, isOn] of Object.entries(this.daysOn)) {
       if (!isOn) {
@@ -150,14 +152,22 @@ export class Counselor {
     }
     return off;
   }
+  getDaysOn(): Weekday[] {
+    const off: Weekday[] = [];
+    for (const [day, isOn] of Object.entries(this.daysOn)) {
+      if (isOn) {
+        off.push(Weekday[day as keyof typeof Weekday]);
+      }
+    }
+    return off;
+  }
 
-  setAllDaysOff() {
+  setAllDaysOff(): void {
     for (const day in this.daysOn) {
-      const weekdayDay: Weekday = Weekday[day as keyof typeof Weekday];
-      this.daysOn[weekdayDay] = false;
+      this.daysOn[day as keyof DayOffDictionary] = false;
     }
   }
-  clone() {
+  clone(): Counselor {
     const myClone = new Counselor(this.name);
     myClone.setVisibility(this.visible);
     myClone.setDaysOn(this.daysOn);

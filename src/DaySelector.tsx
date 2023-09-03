@@ -8,13 +8,13 @@ interface Props {
 export function DaySelector({ selectedDays, setSelectedDays }: Props) {
   const days = [
     { label: "Mon", name: "Mon" },
-    { label: "Tues", name: "Tues" },
-    { label: "Weds", name: "Weds" },
-    { label: "Thurs", name: "Thurs" },
+    { label: "Tue", name: "Tue" },
+    { label: "Wed", name: "Wed" },
+    { label: "Thur", name: "Thur" },
   ];
   return (
     <>
-      <ButtonGroup className="mb-2">
+      <ButtonGroup className="mb-2 w-100">
         {days.map((day) => {
           return (
             <Button

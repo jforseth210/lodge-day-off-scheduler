@@ -6,6 +6,7 @@ import { CounselorList } from "./CounselorList";
 import { useApplicationStateDispatch } from "./ApplicationContext";
 import { NewGroupAccordian } from "./NewGroupAccordian";
 import { GroupList } from "./GroupList";
+import { DaysOffSection } from "./DaysOffSection";
 
 function App() {
   let dispatch: Function = useApplicationStateDispatch()!;
@@ -48,6 +49,7 @@ function App() {
             <GroupList />
           </Col>
         </Row>
+        <DaysOffSection />
       </Container>
     </>
   );

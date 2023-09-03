@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-import React from "react";
-import { Button, NavItem } from "react-bootstrap";
+import { SolveButton } from "./SolveButton";
+import { NavItem } from "react-bootstrap";
 function Nav() {
   return (
     <Navbar bg="body-tertiary" expand="lg">
@@ -17,7 +17,7 @@ function Nav() {
           Scheduler
         </Navbar.Brand>
         <NavItem>
-          <Button>Generate</Button>
+          <SolveButton />
         </NavItem>
       </Container>
     </Navbar>

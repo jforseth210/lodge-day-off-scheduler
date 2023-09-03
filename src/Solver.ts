@@ -1,99 +1,61 @@
-const weekday = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"];
+import { Counselor, Group, Weekday } from "./Models";
+function getRandomElement<T>(array: Array<T>): T {
+  return array[Math.floor(Math.random() * array.length)];
+}
 
-const getRandomElement = (array) =>
-  array[Math.floor(Math.random() * array.length)];
-
-function solve(groups, counselors) {
-  for (const day of weekday) {
+export async function solve(groups: Group[], counselors: Counselor[]) {
+  for (const dayString in Weekday) {
+    const day: Weekday = Weekday[dayString as keyof typeof Weekday];
     for (const group of groups) {
       while (!group.hasMinimum(day)) {
         const counselorsOff = group.getCounselorsOff(day);
         if (counselorsOff.length > 0) {
-          let addedSomeone = false;
+          let options = [];
           for (const counselor of counselorsOff) {
             if (counselor.canWorkAnotherDay()) {
-              counselor.setOn(day, true);
-              addedSomeone = true;
-              break;
+              options.push(counselor);
             }
           }
-          if (!addedSomeone) {
-            console.log(`Not enough counselors for ${group.name} on ${day}`);
+          if (options.length > 0) {
+            getRandomElement(options).setOn(day, true);
+          } else {
             return false;
           }
         } else {
-          console.log(`Not enough counselors for ${group.name} on ${day}`);
           return false;
         }
       }
-      console.log(`Solved: ${day}`);
     }
-    groups.sort((a, b) => a.getCounselorRatio(day) - b.getCounselorRatio(day));
+    groups.sort((a, b) => b.getCounselorRatio(day) - a.getCounselorRatio(day));
   }
-
-  for (const day in weekday) {
-    if (counselors.every((counselor) => counselor.isOn(day))) {
-      console.log(`No one off on ${day}`);
-      return false;
-    }
-  }
-
   for (const counselor of counselors) {
     while (counselor.getDaysOff().length > 1) {
       counselor.setOn(getRandomElement(counselor.getDaysOff()), true);
     }
   }
 
+  for (const dayString in Weekday) {
+    const day: Weekday = Weekday[dayString as keyof typeof Weekday];
+    if (counselors.every((counselor) => counselor.isOn(day))) {
+      return false;
+    }
+  }
+
+  /*
   const result = [];
   for (const counselor of counselors) {
-    result.push([counselor.name, counselor.getDaysOff()[0]]);
-  }
-  return result;
+    result.push([counselor.getName(), counselor.getDaysOff()[0]]);
+  }*/
+  return true;
 }
-
-function shuffle(array) {
+/*
+function shuffle(array: Array<any>) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
-async function fetchGroupsJson() {
-  const response = await fetch("groups.json");
-  const groupsJson = await response.json();
-  return groupsJson;
-}
-function addCounselorToGroup(counselor, group) {
-  counselor.addGroup(group);
-  group.addCounselor(counselor);
-}
 (async () => {
-  const groupsJson = await fetchGroupsJson();
-  const groups = [];
-  const counselors = [];
-
-  for (const groupJson of groupsJson) {
-    const group = new Group(
-      groupJson.name,
-      groupJson.days,
-      groupJson.minCounselors
-    );
-
-    for (const counselorName of groupJson.counselors) {
-      let counselor = counselors.find(
-        (counselor) => counselor.name === counselorName
-      );
-
-      if (!counselor) {
-        counselor = new Counselor(counselorName);
-        counselors.push(counselor);
-      }
-
-      addCounselorToGroup(counselor, group);
-    }
-
-    groups.push(group);
-  }
-
   const TRIES = 10; // Change this to the desired number of tries
   const solutions = [];
 
@@ -138,3 +100,4 @@ function addCounselorToGroup(counselor, group) {
     }
   }
 })();
+*/

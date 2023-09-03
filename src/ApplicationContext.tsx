@@ -61,7 +61,8 @@ type Action =
       minCounselors: number;
       memberCounselors: Counselor[];
     }
-  | { type: "deleted_group"; name: string };
+  | { type: "deleted_group"; name: string }
+  | { type: "refresh_everything" };
 function stateReducer(
   state: ApplicationStateInterface,
   action: Action
@@ -151,6 +152,19 @@ function stateReducer(
         ),
       };
     }
+    case "refresh_everything": {
+      let stateCopy: ApplicationStateInterface = {
+        counselors: [],
+        groups: [],
+      };
+      for (const counselor of state.counselors) {
+        stateCopy.counselors.push(counselor.clone());
+      }
+      for (const group of state.groups) {
+        stateCopy.groups.push(group.clone());
+      }
+      return stateCopy;
+    }
     default:
       return state;
   }
@@ -185,7 +199,6 @@ function saveState(state: ApplicationStateInterface) {
   }
   for (const group of stateCopy.groups) {
     for (const counselor of group.getMemberCounselors()) {
-      
       const relationship = {
         group: group.getName(),
         counselor: counselor.getName(),
@@ -232,8 +245,10 @@ function loadState(): ApplicationStateInterface {
       const group: Group = groups.filter(
         (group: Group) => group.getName() === relationship.group
       )[0];
-      group.addCounselor(counselor);
-      counselor.addGroup(group);
+      if (group && counselor) {
+        group.addCounselor(counselor);
+        counselor.addGroup(group);
+      }
     }
     // Reconstruct the state object
     return {
