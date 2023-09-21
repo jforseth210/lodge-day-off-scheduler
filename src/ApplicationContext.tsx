@@ -9,6 +9,7 @@ import { Counselor, Group, Weekday } from "./Models";
 interface ApplicationStateInterface {
   counselors: Counselor[];
   groups: Group[];
+  scheduleGenerated: boolean;
 }
 interface SerializableApplicationStateInterface {
   counselors: Counselor[];
@@ -18,6 +19,7 @@ interface SerializableApplicationStateInterface {
 export const ApplicationContext = createContext<ApplicationStateInterface>({
   counselors: [],
   groups: [],
+  scheduleGenerated: false,
 });
 export const ApplicationDispatchContext = createContext<React.Dispatch<any>>(
   () => {}
@@ -62,7 +64,8 @@ type Action =
       memberCounselors: Counselor[];
     }
   | { type: "deleted_group"; name: string }
-  | { type: "refresh_everything" };
+  | { type: "refresh_everything" }
+  | { type: "solution_found" };
 function stateReducer(
   state: ApplicationStateInterface,
   action: Action
@@ -102,6 +105,7 @@ function stateReducer(
       counselor.setVisibility(action.visible);
       return {
         ...state,
+        scheduleGenerated: false,
         counselors: [...state.counselors, counselor].sort(function (
           a: Counselor,
           b: Counselor
@@ -115,6 +119,7 @@ function stateReducer(
     case "deleted_counselor": {
       return {
         ...state,
+        scheduleGenerated: false,
         groups: state.groups.map((group) => {
           group.setMemberCounselors(
             group
@@ -147,15 +152,20 @@ function stateReducer(
     case "deleted_group": {
       return {
         ...state,
+        scheduleGenerated: false,
         groups: state.groups.filter(
           (group: Group) => group.getName() !== action.name
         ),
       };
     }
+    case "solution_found": {
+      return { ...state, scheduleGenerated: true };
+    }
     case "refresh_everything": {
       let stateCopy: ApplicationStateInterface = {
         counselors: [],
         groups: [],
+        scheduleGenerated: state.scheduleGenerated,
       };
       for (const counselor of state.counselors) {
         stateCopy.counselors.push(counselor.clone());
@@ -254,7 +264,8 @@ function loadState(): ApplicationStateInterface {
     return {
       counselors: counselors,
       groups: groups,
+      scheduleGenerated: false,
     };
   }
-  return { counselors: [], groups: [] };
+  return { counselors: [], groups: [], scheduleGenerated: false };
 }

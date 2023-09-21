@@ -19,7 +19,7 @@ export function CounselorList() {
                 <div className="d-flex">
                   <p className="my-auto">{counselor.getName()}</p>
                 </div>
-                {counselor.getDaysOff().map((day) => (
+                {state.scheduleGenerated && counselor.getDaysOff().map((day) => (
                   <Badge bg="primary" className="me-1" key={day}>
                     {day}
                   </Badge>

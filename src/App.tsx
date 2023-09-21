@@ -3,13 +3,17 @@ import "./App.css";
 import Nav from "./Nav";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { CounselorList } from "./CounselorList";
-import { useApplicationStateDispatch } from "./ApplicationContext";
+import {
+  useApplicationState,
+  useApplicationStateDispatch,
+} from "./ApplicationContext";
 import { NewGroupAccordian } from "./NewGroupAccordian";
 import { GroupList } from "./GroupList";
 import { DaysOffSection } from "./DaysOffSection";
 
 function App() {
   let dispatch: Function = useApplicationStateDispatch()!;
+  const state = useApplicationState();
   return (
     <>
       <Nav />
@@ -49,7 +53,7 @@ function App() {
             <GroupList />
           </Col>
         </Row>
-        <DaysOffSection />
+        {state.scheduleGenerated && <DaysOffSection />}
       </Container>
     </>
   );

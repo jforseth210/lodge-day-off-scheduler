@@ -27,6 +27,9 @@ export function SolveButton() {
           console.log(solution ? "Success" : "Failure");
           attempts++;
         }
+        if (solution) {
+          dispatch({ type: "solution_found" });
+        }
         dispatch({ type: "refresh_everything" });
         setProcessing(false);
       }}
