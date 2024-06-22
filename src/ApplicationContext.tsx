@@ -10,6 +10,7 @@ interface ApplicationStateInterface {
   counselors: Counselor[];
   groups: Group[];
   scheduleGenerated: boolean;
+  failureReasons: string[]
 }
 interface SerializableApplicationStateInterface {
   counselors: Counselor[];
@@ -20,9 +21,10 @@ export const ApplicationContext = createContext<ApplicationStateInterface>({
   counselors: [],
   groups: [],
   scheduleGenerated: false,
+  failureReasons: []
 });
 export const ApplicationDispatchContext = createContext<React.Dispatch<any>>(
-  () => {}
+  () => { }
 );
 interface Props {
   children?: ReactNode;
@@ -57,12 +59,12 @@ type Action =
   | { type: "added_counselor"; name: string; visible: boolean }
   | { type: "deleted_counselor"; name: string }
   | {
-      type: "added_group";
-      name: string;
-      days: Weekday[];
-      minCounselors: number;
-      memberCounselors: Counselor[];
-    }
+    type: "added_group";
+    name: string;
+    days: Weekday[];
+    minCounselors: number;
+    memberCounselors: Counselor[];
+  }
   | { type: "deleted_group"; name: string }
   | { type: "refresh_everything" }
   | { type: "solution_found" };
@@ -86,7 +88,7 @@ function stateReducer(
         counselors: state.counselors.map((counselor) => {
           counselor.setVisibility(
             counselor.getName().toLowerCase().includes(action.text) ||
-              action.text === ""
+            action.text === ""
           );
           return counselor;
         }),
@@ -106,7 +108,7 @@ function stateReducer(
       return {
         ...state,
         scheduleGenerated: false,
-        counselors: [...state.counselors, counselor].sort(function (
+        counselors: [...state.counselors, counselor].sort(function(
           a: Counselor,
           b: Counselor
         ) {
@@ -166,6 +168,7 @@ function stateReducer(
         counselors: [],
         groups: [],
         scheduleGenerated: state.scheduleGenerated,
+        failureReasons: state.failureReasons
       };
       for (const counselor of state.counselors) {
         stateCopy.counselors.push(counselor.clone());
@@ -265,7 +268,8 @@ function loadState(): ApplicationStateInterface {
       counselors: counselors,
       groups: groups,
       scheduleGenerated: false,
+      failureReasons: []
     };
   }
-  return { counselors: [], groups: [], scheduleGenerated: false };
+  return { counselors: [], groups: [], scheduleGenerated: false, failureReasons: [] };
 }

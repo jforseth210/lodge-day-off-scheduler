@@ -12,7 +12,8 @@ export function CounselorList() {
     <ListGroup>
       {counselors
         .filter((counselor) => counselor.getVisibility())
-        .map(function (counselor) {
+        .sort((a, b) => a.getName().localeCompare(b.getName()))
+        .map(function(counselor) {
           return (
             <ListGroup.Item className="d-flex" key={counselor.getName()}>
               <div className="w-100">

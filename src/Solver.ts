@@ -19,10 +19,10 @@ export async function solve(groups: Group[], counselors: Counselor[]) {
           if (options.length > 0) {
             getRandomElement(options).setOn(day, true);
           } else {
-            return false;
+            return { success: false, reason: `No counselors available for ${group.getName()} on ${day}` };
           }
         } else {
-          return false;
+          return { success: false, reason: `No counselors off on ${day}` };;
         }
       }
     }
@@ -37,7 +37,7 @@ export async function solve(groups: Group[], counselors: Counselor[]) {
   for (const dayString in Weekday) {
     const day: Weekday = Weekday[dayString as keyof typeof Weekday];
     if (counselors.every((counselor) => counselor.isOn(day))) {
-      return false;
+      return { success: false, reason: `Every counselor is working on ${day}` };
     }
   }
 
@@ -46,7 +46,7 @@ export async function solve(groups: Group[], counselors: Counselor[]) {
   for (const counselor of counselors) {
     result.push([counselor.getName(), counselor.getDaysOff()[0]]);
   }*/
-  return true;
+  return { success: true, reason: '' };
 }
 /*
 function shuffle(array: Array<any>) {

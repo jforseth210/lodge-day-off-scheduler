@@ -9,7 +9,7 @@ export function DaysOffSection() {
     days.push(
       <div className="flex-fill card p-2 m-2">
         <h4>{dayString}</h4>
-        <hr className="mt-0"/>
+        <hr className="mt-0" />
         <ul>
           {state.counselors
             .filter((counselor) =>
@@ -24,10 +24,29 @@ export function DaysOffSection() {
       </div>
     );
   }
-  return (
-    <Row className="mt-2">
-      <h2>Days Off</h2>
-      <div className="d-flex w-100">{days}</div>
-    </Row>
-  );
+  if (state.scheduleGenerated) {
+    return (
+      <Row className="mt-2">
+        <h2>Days Off</h2>
+        <div className="d-flex w-100">{days}</div>
+      </Row>
+    );
+  } else if (state.failureReasons) {
+    return (
+      <Row className="mt-2">
+        <h2>Days Off</h2>
+        <p>Failed to generate a working schedule. Every attempt to generate a schedule failed for one of the following reasons:</p>
+        <ol className="ms-3">
+          {state.failureReasons.map((reason) => <li>{reason}</li>)}
+        </ol>
+      </Row>
+    );
+  } else {
+    return (
+      <Row className="mt-2">
+        <h2>Days Off</h2>
+        <p>Schedule not generated yet</p>
+      </Row>
+    );
+  };
 }
