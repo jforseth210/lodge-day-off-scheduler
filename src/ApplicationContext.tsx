@@ -15,6 +15,7 @@ interface SerializableApplicationStateInterface {
   counselors: Counselor[];
   groups: Group[];
   relationships: Array<{ counselor: string; group: string }>;
+  scheduleGenerated: boolean;
 }
 export const ApplicationContext = createContext<ApplicationStateInterface>({
   counselors: [],
@@ -184,6 +185,7 @@ function saveState(state: ApplicationStateInterface) {
     counselors: [],
     groups: [],
     relationships: [],
+    scheduleGenerated: state.scheduleGenerated,
   };
   for (const counselor of state.counselors) {
     stateCopy.counselors.push(counselor.clone());
@@ -264,7 +266,7 @@ function loadState(): ApplicationStateInterface {
     return {
       counselors: counselors,
       groups: groups,
-      scheduleGenerated: false,
+      scheduleGenerated: parsedState.scheduleGenerated,
     };
   }
   return { counselors: [], groups: [], scheduleGenerated: false };

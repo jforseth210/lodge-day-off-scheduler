@@ -7,9 +7,9 @@ export function DaysOffSection() {
   const days = [];
   for (const dayString in Weekday) {
     days.push(
-      <div className="flex-fill card p-2 m-2">
+      <div key={dayString} className="flex-fill card p-2 m-2">
         <h4>{dayString}</h4>
-        <hr className="mt-0"/>
+        <hr className="mt-0" />
         <ul>
           {state.counselors
             .filter((counselor) =>
@@ -18,7 +18,7 @@ export function DaysOffSection() {
                 .includes(Weekday[dayString as keyof typeof Weekday])
             )
             .map((counselor) => (
-              <li>{counselor.getName()}</li>
+              <li key={counselor.getName()}>{counselor.getName()}</li>
             ))}
         </ul>
       </div>
