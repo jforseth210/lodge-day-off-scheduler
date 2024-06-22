@@ -19,7 +19,7 @@ export function SolveButton() {
         setProcessing(true);
         let attempts = 0;
         let solution = false;
-        while (!solution && attempts < 20) {
+        while (!solution && attempts < 10000) {
           for (const counselor of state.counselors) {
             counselor.setAllDaysOff();
           }
@@ -29,6 +29,9 @@ export function SolveButton() {
         }
         if (solution) {
           dispatch({ type: "solution_found" });
+        }
+        else {
+          alert("Failed to generate a working schedule. Try fewer groups or requiring fewer counselors per group.");
         }
         dispatch({ type: "refresh_everything" });
         setProcessing(false);
