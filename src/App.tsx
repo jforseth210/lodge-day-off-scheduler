@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import Nav from "./Nav";
 import { Accordion, Col, Container, Form, Row } from "react-bootstrap";
@@ -18,7 +17,7 @@ function App() {
       <Nav />
       <Container fluid>
         <Row className="pt-4">
-          <Col className="col-4">
+          <Col className="col-md-4">
             <Accordion defaultActiveKey="1">
               <Accordion.Item eventKey="0">
                 <Accordion.Header>Counselors</Accordion.Header>
@@ -26,7 +25,7 @@ function App() {
                   <Form.Control
                     className="py-3"
                     placeholder="Search or Add a counselor..."
-                    onBlur={function(e) {
+                    onBlur={function() {
                       dispatch({ type: "show_all_counselors" });
                     }}
                     onInput={function(e) {
@@ -59,7 +58,7 @@ function App() {
               </Accordion.Item>
             </Accordion>
           </Col>
-          <Col>
+          <Col className="col-md-8">
             <DaysOffSection />
           </Col>
         </Row>
