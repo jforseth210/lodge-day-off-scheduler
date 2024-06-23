@@ -18,7 +18,7 @@ export function DaysOffSection() {
                 .includes(Weekday[dayString as keyof typeof Weekday])
             )
             .map((counselor) => (
-              <li>{counselor.getName()}</li>
+              <li key={counselor.getName()}>{counselor.getName()}</li>
             ))}
         </ul>
       </div>
@@ -31,7 +31,7 @@ export function DaysOffSection() {
         <div className="d-flex w-100">{days}</div>
       </Row>
     );
-  } else if (state.failureReasons.length > 1) {
+  } else if (state.failureReasons.length > 0) {
     return (
       <Row className="mt-2">
         <h2>Days Off</h2>
