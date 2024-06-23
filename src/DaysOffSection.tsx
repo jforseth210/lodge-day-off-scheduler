@@ -31,7 +31,7 @@ export function DaysOffSection() {
         <div className="d-flex w-100">{days}</div>
       </Row>
     );
-  } else if (state.failureReasons) {
+  } else if (state.failureReasons.length > 1) {
     return (
       <Row className="mt-2">
         <h2>Days Off</h2>
