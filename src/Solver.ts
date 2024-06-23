@@ -28,12 +28,7 @@ export async function solve(groups: Group[], counselors: Counselor[]) {
     }
     groups.sort((a, b) => b.getCounselorRatio(day) - a.getCounselorRatio(day));
   }
-  for (const counselor of counselors) {
-    while (counselor.getDaysOff().length > 1) {
-      counselor.setOn(getRandomElement(counselor.getDaysOff()), true);
-    }
-  }
-
+  balanceExtraOffDays(counselors);
   for (const dayString in Weekday) {
     const day: Weekday = Weekday[dayString as keyof typeof Weekday];
     if (counselors.every((counselor) => counselor.isOn(day))) {
@@ -48,56 +43,44 @@ export async function solve(groups: Group[], counselors: Counselor[]) {
   }*/
   return { success: true, reason: '' };
 }
-/*
-function shuffle(array: Array<any>) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
-(async () => {
-  const TRIES = 10; // Change this to the desired number of tries
-  const solutions = [];
+// If counselors have multiple days off, have them work on days
+// that have the most other counselors off. 
+// LLM generated code
+function balanceExtraOffDays(counselors: Counselor[]): void {
+  // Iterate through each counselor
+  for (const counselor of counselors) {
+    const daysOff = counselor.getDaysOff();
 
-  for (let i = 0; i < TRIES; i++) {
-    shuffle(counselors);
-    shuffle(groups);
+    // Check if the counselor has more than one day off
+    if (daysOff.length > 1) {
+      // Count how many counselors are off each day
+      const offCounts = countOffDays(counselors);
+      console.log("offCounts", offCounts)
+      console.log("daysOff", daysOff)
+      // Sort days by the number of counselors off (descending)
+      daysOff.sort((a, b) => offCounts[b] - offCounts[a]);
 
-    for (const counselor of counselors) {
-      counselor.setAllDaysOff();
-    }
-
-    const solution = solve(groups, counselors);
-
-    if (solution) {
-      const sortedSolution = solution.map(([name, daysOn]) => [name, daysOn]);
-      solutions.push(sortedSolution);
-    }
-  }
-
-  // Deduplicate solutions
-  const uniqueSolutions = [...new Set(solutions.map(JSON.stringify))].map(
-    JSON.parse
-  );
-
-  for (const solution of uniqueSolutions) {
-    console.log("Possible days off:");
-    console.log("==================");
-
-    for (const [name, daysOn] of solution) {
-      console.log(name, daysOn);
-    }
-    for (const group of groups) {
-      console.log(group.name);
-      for (const day of weekday) {
-        console.log(
-          `   ${day} ${group
-            .getCounselorsOn(day)
-            .map((counselor) => counselor.name)
-            .join(",")}`
-        );
+      // Set the counselor to be "on" on days with the most other counselors off
+      for (let i = 0; i < daysOff.length - 1; i++) {
+        counselor.setOn(daysOff[i], true);
       }
     }
   }
-})();
-*/
+}
+// Helper function to count how many counselors are off each day
+function countOffDays(counselors: Counselor[]): { [key in Weekday]: number } {
+  const offCounts = {
+    [Weekday.Mon]: 0,
+    [Weekday.Tue]: 0,
+    [Weekday.Wed]: 0,
+    [Weekday.Thur]: 0,
+  };
+
+  for (const counselor of counselors) {
+    for (const day of counselor.getDaysOff()) {
+      offCounts[day]++;
+    }
+  }
+
+  return offCounts;
+}
