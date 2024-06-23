@@ -1,12 +1,10 @@
-
-import { Weekday } from "./Models";
-import React, { useState } from "react";
-import { ListGroup, Button, Badge, Modal } from "react-bootstrap";
+import { useState } from "react";
+import { ListGroup, Button, Badge } from "react-bootstrap";
 import {
   useApplicationState,
   useApplicationStateDispatch,
 } from "./ApplicationContext";
-import { Counselor, Group } from "./Models";
+import { Group } from "./Models";
 import { GroupModal } from "./GroupModal";
 export function GroupList() {
   const state = useApplicationState()!;

@@ -4,18 +4,15 @@ import Nav from "./Nav";
 import { Accordion, Col, Container, Form, Row } from "react-bootstrap";
 import { CounselorList } from "./CounselorList";
 import {
-  useApplicationState,
   useApplicationStateDispatch,
 } from "./ApplicationContext";
 import { NewGroupAccordian } from "./NewGroupAccordian";
 import { GroupList } from "./GroupList";
 import { DaysOffSection } from "./DaysOffSection";
 import AccordionBody from "react-bootstrap/esm/AccordionBody";
-import AccordionItem from "react-bootstrap/esm/AccordionItem";
 
 function App() {
   let dispatch: Function = useApplicationStateDispatch()!;
-  const state = useApplicationState();
   return (
     <>
       <Nav />

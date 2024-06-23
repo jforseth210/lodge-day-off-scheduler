@@ -8,7 +8,7 @@ interface GroupModalProps {
 export const GroupModal: React.FC<GroupModalProps> = ({ group, handleClose }) => {
   const state = useApplicationState()!;
   if (group == null) { return (<></>); }
-  if (state.scheduleGenerated == false) { return <></> }
+  if (state.scheduleGenerated === false) { return <></> }
   const days = []
   for (const dayString in Weekday) {
     days.push(
