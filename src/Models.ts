@@ -9,12 +9,14 @@ export class Group {
   private minCounselors: number;
   private days: Weekday[];
   private memberCounselors: Counselor[];
+
   constructor(name: string, days: Weekday[], minCounselors: number) {
     this.name = name;
     this.days = days;
     this.minCounselors = minCounselors;
     this.memberCounselors = [];
   }
+
   hasMinimum(day: Weekday) {
     // If the group doesn't apply to the given day,
     // it doesn't need any counselors. For example, if it's Tuesday,
@@ -32,6 +34,7 @@ export class Group {
     }
     return count >= this.minCounselors;
   }
+
   getName() {
     return this.name;
   }
