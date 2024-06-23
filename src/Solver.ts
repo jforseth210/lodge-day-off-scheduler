@@ -55,8 +55,6 @@ function balanceExtraOffDays(counselors: Counselor[]): void {
     if (daysOff.length > 1) {
       // Count how many counselors are off each day
       const offCounts = countOffDays(counselors);
-      console.log("offCounts", offCounts)
-      console.log("daysOff", daysOff)
       // Sort days by the number of counselors off (descending)
       daysOff.sort((a, b) => offCounts[b] - offCounts[a]);
 
