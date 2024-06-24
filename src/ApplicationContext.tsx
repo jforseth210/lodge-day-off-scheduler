@@ -267,7 +267,7 @@ function loadState(): ApplicationStateInterface {
     return {
       counselors: counselors,
       groups: groups,
-      scheduleGenerated: false,
+      scheduleGenerated: counselors[0].getDaysOn().length > 0,
       failureReasons: []
     };
   }
