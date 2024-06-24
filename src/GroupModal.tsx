@@ -10,14 +10,13 @@ export const GroupModal: React.FC<GroupModalProps> = ({ group, handleClose }) =>
   if (group == null) { return (<></>); }
   if (state.scheduleGenerated === false) { return <></> }
   const days = []
-  for (const dayString in Weekday) {
+  for (const day of group.getDays()) {
     days.push(
       <div className="flex-fill card p-2 m-2">
-        <h4>{dayString}</h4>
+        <h4>{day}</h4>
         <hr className="mt-0" />
         <ul>
-          {group.getMemberCounselors().filter(
-            (counselor) => counselor.getDaysOn().indexOf(Weekday[dayString as keyof typeof Weekday]) >= 0).map((counselor) => <li>{counselor.getName()}</li>)}
+          {group.getCounselorsOn(Weekday[day as keyof typeof Weekday])?.map(counselor => <li>{counselor.getName()}</li>)}
         </ul>
       </div>
     );
