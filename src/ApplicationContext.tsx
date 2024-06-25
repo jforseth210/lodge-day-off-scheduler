@@ -6,30 +6,36 @@ import {
   useReducer,
 } from "react";
 import { Counselor, Group, Weekday } from "./Models";
+
 interface ApplicationStateInterface {
   counselors: Counselor[];
   groups: Group[];
   scheduleGenerated: boolean;
   failureReasons: string[]
 }
+
 interface SerializableApplicationStateInterface {
   counselors: Counselor[];
   groups: Group[];
   relationships: Array<{ counselor: string; group: string }>;
 }
+
 export const ApplicationContext = createContext<ApplicationStateInterface>({
   counselors: [],
   groups: [],
   scheduleGenerated: false,
   failureReasons: []
 });
+
 export const ApplicationDispatchContext = createContext<React.Dispatch<any>>(
   () => { }
 );
+
 interface Props {
   children?: ReactNode;
   // any props that come into the component
 }
+
 export function StateProvider({ children }: Props) {
   const [state, dispatch] = useReducer(stateReducer, loadState());
 
