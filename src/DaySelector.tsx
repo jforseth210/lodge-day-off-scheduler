@@ -1,4 +1,3 @@
-import React from "react";
 import { ButtonGroup, Button } from "react-bootstrap";
 interface Props {
   selectedDays: Array<String>;
